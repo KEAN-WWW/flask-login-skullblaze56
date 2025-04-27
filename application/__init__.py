@@ -32,7 +32,6 @@ def init_app():
     migrate.init_app(app, db)
 
     with app.app_context():
-
         blueprints = [bp_homepage, authentication]
         # Register Blueprints
         for blueprint in blueprints:
@@ -40,5 +39,5 @@ def init_app():
         return app
 
 @login_manager.user_loader
-def user_loader(user_id):
-    return User.query.get(user_id)
+def load_user(user_id):
+    return User.query.get(int(user_id))
